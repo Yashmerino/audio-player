@@ -33,6 +33,8 @@ private slots:
 
     void set_currentPositionText(int value);
 
+    void on_loop_clicked(bool checked);
+
 private:
     Ui::MainWindow *ui;
     Audioplayer audioplayer;

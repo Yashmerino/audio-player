@@ -108,3 +108,15 @@ void MainWindow::set_currentPositionText(int value) // Set label text current po
     ui->currentPosition->setText(time.toString("mm:ss"));
 }
 
+void MainWindow::on_loop_clicked(bool checked) // If loop box checked then loop the audio
+{
+    if(checked)
+    {
+        audioplayer.playlist->setPlaybackMode(QMediaPlaylist::Loop);
+    }
+    else
+    {
+        audioplayer.playlist->setPlaybackMode(QMediaPlaylist::CurrentItemOnce);
+    }
+}
+
