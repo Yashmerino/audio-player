@@ -3,6 +3,7 @@
 
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
+#include <QFileInfo>
 
 class Audioplayer
 {
@@ -11,10 +12,13 @@ public:
 
     ~Audioplayer();
 
-private:
+public:
     QMediaPlayer* player; // Creating a QMediaPlayer and QMediaPlaylist to work with audio
     QMediaPlaylist* playlist;
 
+    QString file_path;
+
+    QFileInfo* file_info;
 };
 
 #endif // AUDIOPLAYER_H

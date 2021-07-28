@@ -10,4 +10,5 @@ Audioplayer::~Audioplayer() // Destructor of the class Audioplayer
 {
    delete player;
    delete playlist;
+   delete file_info;
 }
