@@ -23,6 +23,8 @@ private slots:
 
     void on_pauseButton_clicked();
 
+    void on_volume_valueChanged(int value);
+
 private:
     Ui::MainWindow *ui;
     Audioplayer audioplayer;

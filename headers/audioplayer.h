@@ -4,6 +4,7 @@
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 #include <QFileInfo>
+#include <QTimer>
 
 class Audioplayer
 {
@@ -19,6 +20,8 @@ public:
     QString file_path;
 
     QFileInfo* file_info;
+
+    QTimer timer;
 };
 
 #endif // AUDIOPLAYER_H

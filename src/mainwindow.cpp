@@ -43,11 +43,19 @@ void MainWindow::on_selectbutton_clicked() // If select file button is clicked
 
 void MainWindow::on_playbutton_clicked() // If play button is clicked
 {
+    audioplayer.player->setVolume(ui->volume->sliderPosition()); // Change the volume if initial position of volume slider changed
+
     audioplayer.player->play();
 }
 
 void MainWindow::on_pauseButton_clicked() // If pause button is clicked
 {
     audioplayer.player->pause();
+}
+
+
+void MainWindow::on_volume_valueChanged(int value) // Change volume in dependence of volume slider's position
+{
+    audioplayer.player->setVolume(value);
 }
 
