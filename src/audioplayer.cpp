@@ -1,4 +1,4 @@
-#include "audioplayer.h"
+#include "headers/audioplayer.h"
 
 Audioplayer::Audioplayer() // Constructor of the class Audioplayer
 {

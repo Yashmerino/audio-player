@@ -11,13 +11,13 @@ QT += multimediawidgets
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    audiplayer.cpp \
-    main.cpp \
-    mainwindow.cpp
+    src/audioplayer.cpp \
+    src/main.cpp \
+    src/mainwindow.cpp
 
 HEADERS += \
-    audioplayer.h \
-    mainwindow.h
+    headers/audioplayer.h \
+    headers/mainwindow.h
 
 FORMS += \
     mainwindow.ui
