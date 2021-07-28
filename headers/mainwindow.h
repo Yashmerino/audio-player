@@ -19,6 +19,10 @@ public:
 private slots:
     void on_selectbutton_clicked();
 
+    void on_playbutton_clicked();
+
+    void on_pauseButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     Audioplayer audioplayer;

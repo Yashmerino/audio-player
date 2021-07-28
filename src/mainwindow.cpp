@@ -16,7 +16,7 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::on_selectbutton_clicked() // If select file button clicked
+void MainWindow::on_selectbutton_clicked() // If select file button is clicked
 {
     QString filter = "All File (*.mp3, *.ogg, *.wav)"; // Filter to show only audio files
 
@@ -38,5 +38,16 @@ void MainWindow::on_selectbutton_clicked() // If select file button clicked
         audioplayer.player->setVolume(50);
 
     }
+}
+
+
+void MainWindow::on_playbutton_clicked() // If play button is clicked
+{
+    audioplayer.player->play();
+}
+
+void MainWindow::on_pauseButton_clicked() // If pause button is clicked
+{
+    audioplayer.player->pause();
 }
 
