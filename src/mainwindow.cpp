@@ -34,6 +34,7 @@ void MainWindow::on_selectbutton_clicked() // If select file button is clicked
     else
     {
         QMessageBox::information(this, "Succes", audioplayer.file_info->fileName() + " has been selected!");
+        audioplayer.playlist->clear();
         audioplayer.playlist->addMedia(QUrl(audioplayer.file_path)); //Adding file to playlist
 
         audioplayer.player->setPlaylist(audioplayer.playlist);
@@ -44,13 +45,22 @@ void MainWindow::on_selectbutton_clicked() // If select file button is clicked
             set_durationText();
             qDebug() << duration;
         });
+
+        ui->timeline->setValue(0); // Set the timeline slider to 0 when new audio is loaded
     }
 }
 
 
 void MainWindow::on_playbutton_clicked() // If play button is clicked
 {
-    connect(audioplayer.timer, SIGNAL(timeout()), this, SLOT(set_timelineSliderValue())); // Execute set_timelineSliderValue() every 100 ms
+    if(!audioplayer.file_path.isEmpty()) // If no file was selected don't connect SLOT to avoid crash
+    {
+        connect(audioplayer.timer, SIGNAL(timeout()), this, SLOT(set_timelineSliderValue())); // Execute set_timelineSliderValue() every 100 ms
+    }
+    else
+    {
+        QMessageBox::warning(this, "Error", "Select a file!");
+    }
 
     audioplayer.player->setVolume(ui->volume->sliderPosition()); // Change the volume if initial position of volume slider changed
 
@@ -73,6 +83,13 @@ void MainWindow::on_volume_valueChanged(int value) // Change volume in dependenc
 void MainWindow::set_timelineSliderValue() // Move slider's position in dependance of audio's position
 {
     set_currentPositionText(0);
+
+    if(audioplayer.player->position() >= audioplayer.player->duration() && !(ui->loop->isChecked())) // If audio reached the end go to start to avoid crash
+    {
+       audioplayer.player->pause();
+       audioplayer.player->setPosition(0);
+       ui->timeline->setValue(0);
+    }
 
     ui->timeline->setValue(audioplayer.player->position() * 100 / audioplayer.player->duration());
 }
