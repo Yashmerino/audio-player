@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QTime>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -34,9 +35,15 @@ void MainWindow::on_selectbutton_clicked() // If select file button is clicked
     {
         QMessageBox::information(this, "Succes", audioplayer.file_info->fileName() + " has been selected!");
         audioplayer.playlist->addMedia(QUrl(audioplayer.file_path)); //Adding file to playlist
+
         audioplayer.player->setPlaylist(audioplayer.playlist);
         audioplayer.player->setVolume(50);
 
+        connect(audioplayer.player, &QMediaPlayer::durationChanged, this, [&](qint64 duration) // If caught signal that duration changed
+        {                                                                                      // change text label content in ui
+            set_durationText();
+            qDebug() << duration;
+        });
     }
 }
 
@@ -65,12 +72,39 @@ void MainWindow::on_volume_valueChanged(int value) // Change volume in dependenc
 
 void MainWindow::set_timelineSliderValue() // Move slider's position in dependance of audio's position
 {
+    set_currentPositionText(0);
+
     ui->timeline->setValue(audioplayer.player->position() * 100 / audioplayer.player->duration());
 }
 
 
 void MainWindow::on_timeline_valueChanged(int value) // Change audio's position if slider's position changed
 {
+    set_currentPositionText(value);
+
     audioplayer.player->setPosition(audioplayer.player->duration() * value / 100);
+}
+
+void MainWindow::set_durationText() // Set label text duration of audio
+{
+    qint64 duration = audioplayer.player->duration();
+    QTime time(0,(duration % (1000 * 60 * 60)) / (1000 * 60),(duration % (1000 * 60)) / 1000);
+    ui->duration->setText(time.toString("mm:ss"));
+}
+
+void MainWindow::set_currentPositionText(int value) // Set label text current position of audio
+{
+    qint64 duration;
+
+    if(value == 0)
+    {
+        duration = audioplayer.player->position();
+    }
+    else
+    {
+        duration = audioplayer.player->duration() * value / 100;
+    }
+    QTime time(0,(duration % (1000 * 60 * 60)) / (1000 * 60),(duration % (1000 * 60)) / 1000);
+    ui->currentPosition->setText(time.toString("mm:ss"));
 }
 

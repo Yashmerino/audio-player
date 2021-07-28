@@ -33,34 +33,21 @@
      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="2" column="0" colspan="2">
+     <item row="3" column="3">
+      <widget class="QLabel" name="duration">
+       <property name="text">
+        <string>00:00</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1" colspan="2">
       <widget class="QSlider" name="timeline">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
       </widget>
      </item>
-     <item row="0" column="0" colspan="2">
-      <widget class="QPushButton" name="selectbutton">
-       <property name="text">
-        <string>Select audio file</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <spacer name="verticalSpacer">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>40</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="2" column="2">
+     <item row="3" column="4">
       <spacer name="verticalSpacer_2">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -73,7 +60,28 @@
        </property>
       </spacer>
      </item>
-     <item row="1" column="2">
+     <item row="0" column="0" colspan="4">
+      <widget class="QPushButton" name="selectbutton">
+       <property name="text">
+        <string>Select audio file</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="pauseButton">
+       <property name="text">
+        <string>Pause</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QPushButton" name="playbutton">
+       <property name="text">
+        <string>Play</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="4">
       <widget class="QSlider" name="volume">
        <property name="value">
         <number>50</number>
@@ -83,17 +91,26 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="QPushButton" name="playbutton">
-       <property name="text">
-        <string>Play</string>
+     <item row="0" column="4">
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
        </property>
-      </widget>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
      </item>
-     <item row="1" column="0">
-      <widget class="QPushButton" name="pauseButton">
+     <item row="3" column="0">
+      <widget class="QLabel" name="currentPosition">
        <property name="text">
-        <string>Pause</string>
+        <string>00:00</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
      </item>

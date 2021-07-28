@@ -29,6 +29,10 @@ private slots:
 
     void on_timeline_valueChanged(int value);
 
+    void set_durationText();
+
+    void set_currentPositionText(int value);
+
 private:
     Ui::MainWindow *ui;
     Audioplayer audioplayer;
