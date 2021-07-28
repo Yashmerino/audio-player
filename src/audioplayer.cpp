@@ -4,9 +4,10 @@ Audioplayer::Audioplayer() // Constructor of the class Audioplayer
 {
     player = new QMediaPlayer();
     playlist = new QMediaPlaylist();
+    timer = new QTimer();
 
-    timer.setInterval(100); // Timeout interval is equal to 100 ms (0.1 s)
-    timer.start();
+    timer->setInterval(100); // Timeout interval is equal to 100 ms (0.1 s)
+    timer->start();
 }
 
 Audioplayer::~Audioplayer() // Destructor of the class Audioplayer

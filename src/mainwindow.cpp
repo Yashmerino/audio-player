@@ -43,6 +43,8 @@ void MainWindow::on_selectbutton_clicked() // If select file button is clicked
 
 void MainWindow::on_playbutton_clicked() // If play button is clicked
 {
+    connect(audioplayer.timer, SIGNAL(timeout()), this, SLOT(set_timelineSliderValue())); // Execute set_timelineSliderValue() every 100 ms
+
     audioplayer.player->setVolume(ui->volume->sliderPosition()); // Change the volume if initial position of volume slider changed
 
     audioplayer.player->play();
@@ -50,6 +52,8 @@ void MainWindow::on_playbutton_clicked() // If play button is clicked
 
 void MainWindow::on_pauseButton_clicked() // If pause button is clicked
 {
+    disconnect(audioplayer.timer, SIGNAL(timeout()), this, SLOT(set_timelineSliderValue())); // Stop exectuing set_timelineSliderValue() every 100 ms
+
     audioplayer.player->pause();
 }
 
@@ -57,5 +61,16 @@ void MainWindow::on_pauseButton_clicked() // If pause button is clicked
 void MainWindow::on_volume_valueChanged(int value) // Change volume in dependence of volume slider's position
 {
     audioplayer.player->setVolume(value);
+}
+
+void MainWindow::set_timelineSliderValue() // Move slider's position in dependance of audio's position
+{
+    ui->timeline->setValue(audioplayer.player->position() * 100 / audioplayer.player->duration());
+}
+
+
+void MainWindow::on_timeline_valueChanged(int value) // Change audio's position if slider's position changed
+{
+    audioplayer.player->setPosition(audioplayer.player->duration() * value / 100);
 }
 

@@ -21,7 +21,7 @@ public:
 
     QFileInfo* file_info;
 
-    QTimer timer;
+    QTimer* timer;
 };
 
 #endif // AUDIOPLAYER_H

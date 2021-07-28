@@ -25,6 +25,10 @@ private slots:
 
     void on_volume_valueChanged(int value);
 
+    void set_timelineSliderValue();
+
+    void on_timeline_valueChanged(int value);
+
 private:
     Ui::MainWindow *ui;
     Audioplayer audioplayer;
