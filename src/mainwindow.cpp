@@ -20,7 +20,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_selectbutton_clicked() // If select file button is clicked
 {
-    QString filter = "All File (*.ogg, *.wav)"; // Filter to show only audio files
+    QString filter = "All File (*.ogg *.wav *.mp3)"; // Filter to show only audio files
 
     audioplayer.file_path = QFileDialog::getOpenFileName(this, "Select a file", QDir::homePath(), filter); // Get file path
 
