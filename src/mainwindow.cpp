@@ -3,6 +3,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QTime>
+#include <QDir>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,9 +20,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_selectbutton_clicked() // If select file button is clicked
 {
-    QString filter = "All File (*.mp3, *.ogg, *.wav)"; // Filter to show only audio files
+    QString filter = "All File (*.ogg, *.wav)"; // Filter to show only audio files
 
-    audioplayer.file_path = QFileDialog::getOpenFileName(this, "Select a file", "C://", filter); // Get file path
+    audioplayer.file_path = QFileDialog::getOpenFileName(this, "Select a file", QDir::homePath(), filter); // Get file path
 
     audioplayer.file_info = new QFileInfo(audioplayer.file_path); // Initializing QFileInfo
 
