@@ -84,14 +84,8 @@ void MainWindow::set_timelineSliderValue() // Move slider's position in dependan
 {
     set_currentPositionText(0);
 
-    if(audioplayer.player->position() >= audioplayer.player->duration() && !(ui->loop->isChecked())) // If audio reached the end go to start to avoid crash
-    {
-       audioplayer.player->pause();
-       audioplayer.player->setPosition(0);
-       ui->timeline->setValue(0);
-    }
-
-    ui->timeline->setValue(audioplayer.player->position() * 100 / audioplayer.player->duration());
+    if(audioplayer.player->duration() != 0) // If audio reahced the end, don't change timeline slider value to avoid crash
+        ui->timeline->setValue(audioplayer.player->position() * 100 / audioplayer.player->duration());
 }
 
 
