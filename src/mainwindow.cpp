@@ -41,6 +41,8 @@ void MainWindow::on_selectbutton_clicked() // If select file button is clicked
         audioplayer.player->setPlaylist(audioplayer.playlist);
         audioplayer.player->setVolume(50);
 
+        ui->audioname->setText(audioplayer.file_info->fileName());
+
         connect(audioplayer.player, &QMediaPlayer::durationChanged, this, [&](qint64 duration) // If caught signal that duration changed
         {                                                                                      // change text label content in ui
             set_durationText();
